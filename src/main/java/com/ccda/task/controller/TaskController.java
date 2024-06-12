@@ -45,12 +45,14 @@ public class TaskController {
     //    模糊查询，GET被query的任务，指定name,code,create_date范围
     @GetMapping("/taskdto/query")
     public Response<List<TaskDTO>> queryTaskDTO(@RequestParam(required = false)  String name, @RequestParam(required = false)  String code,
-                                                   @RequestParam(required = false)  @DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss") Date startDate,
+                                                   @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date startDate,
                                                    @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date endDate){
         return Response.newSuccess(taskService.queryTaskDTO(name, code, startDate, endDate));
     }
 //    @JsonFormat
 //    @DateTimeFormat
+//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+//@DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss")
 
 
 //    新增接口，新增任务
@@ -67,7 +69,7 @@ public class TaskController {
     }
 
 //    更新接口，编辑name
-    @PostMapping("task/{id}")
+    @PutMapping("task/{id}")
     public Response<TaskDTO> updateTaskById(@PathVariable long id, @RequestBody(required = false) String name){
         return Response.newSuccess(taskService.updateTaskById(id, name));
     }

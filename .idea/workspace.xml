@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06b67ecb-74ba-4832-8706-7b4edadbb8a4" name="Changes" comment="" />
+    <list default="true" id="06b67ecb-74ba-4832-8706-7b4edadbb8a4" name="Changes" comment="任务管理">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/dao/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/dao/TaskRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/dto/TaskDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/dto/TaskDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/controller/TaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/controller/TaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/dto/TaskDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/dto/TaskDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskServiceImpl.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,13 +60,14 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "F:/01 AIAD/intern2/pre_rd2/岗位数据挖掘/复旦/task-spring",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "spring.configuration.checksum": "478f3a4c51824ad23cb50c1c60670c0f"
   }
 }]]></component>
@@ -105,8 +116,16 @@
       <workItem from="1717745810735" duration="25671000" />
       <workItem from="1717914483462" duration="3559000" />
       <workItem from="1717921491494" duration="2325000" />
-      <workItem from="1717924533491" duration="719000" />
+      <workItem from="1717924533491" duration="23669000" />
     </task>
+    <task id="LOCAL-00001" summary="任务管理">
+      <created>1717925431925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717925431925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +146,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="任务管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="任务管理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

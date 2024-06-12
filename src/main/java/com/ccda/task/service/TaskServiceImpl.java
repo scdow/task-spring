@@ -48,22 +48,16 @@ public class TaskServiceImpl implements TaskService{
         List<Task> taskList = new ArrayList<>();
         if (startDate!=null && endDate!=null){
             taskList = taskRepository.findByQuery(name, code, startDate, endDate);
+            System.out.println(startDate);
+            System.out.println(endDate);
         }
         else{
             taskList = taskRepository.findByQueryWithoutDate(name, code);
+            System.out.println("without date");
         }
         return TaskConverter.convertTask(taskList);
     }
 
-    //    public List<TaskDTO> queryTaskDTO(String name, String code, Date startDate, Date endDate) {
-//        if (startDate != null && endDate != null) {
-//            // 如果startDate和endDate都不为null，执行带有日期范围的查询
-//            return taskRepository.findByQuery(name, code, startDate, endDate);
-//        } else {
-//            // 否则，执行不带日期范围的查询
-//            return taskRepository.findByQueryWithoutDate(name, code);
-//        }
-//    }
 
     @Override
     public Long addNewTask(TaskDTO taskDTO){
@@ -87,6 +81,15 @@ public class TaskServiceImpl implements TaskService{
         Task taskInDB = taskRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id "+id+" does not exist."));
         if(StringUtils.hasLength(name) && !taskInDB.getName().equals(name)){
             taskInDB.setName(name);
+            System.out.println(name);
+        }
+        else{
+            if(!StringUtils.hasLength(name)){
+                System.out.println("new name is empty");
+            }
+            if(taskInDB.getName().equals(name)){
+                System.out.println("same name");
+            }
         }
         Task task = taskRepository.save(taskInDB);
         return TaskConverter.convertTask(task);

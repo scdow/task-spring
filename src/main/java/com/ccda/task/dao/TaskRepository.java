@@ -21,5 +21,7 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
     @Query("SELECT t from Task t WHERE t.deleted=false AND t.name LIKE %:name% AND t.code LIKE %:code%")
     List<Task> findByQueryWithoutDate(@Param("name") String name, @Param("code") String code);
 
+//    List<Task> findByTaskDateBetween(Date startDate, Date endDate);
+
 
 }
