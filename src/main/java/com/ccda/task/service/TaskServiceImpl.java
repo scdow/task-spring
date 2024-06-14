@@ -62,9 +62,10 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Long addNewTask(TaskDTO taskDTO){
         List<Task> taskList = taskRepository.findByName(taskDTO.getName());
-        if (!CollectionUtils.isEmpty(taskList)){
-            throw new IllegalStateException("name: " + taskDTO.getName() + " has been taken");
-        }
+//        允许name重复，因为code不同
+//        if (!CollectionUtils.isEmpty(taskList)){
+//            throw new IllegalStateException("name: " + taskDTO.getName() + " has been taken");
+//        }
         Task task = taskRepository.save(TaskConverter.convertTask(taskDTO));
         return task.getId();
     }
