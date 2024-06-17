@@ -6,6 +6,7 @@ import com.ccda.task.dto.TaskDTO;
 import com.ccda.task.service.TaskService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,14 @@ public class TaskController {
     public Response<List<TaskDTO>> getCurrentTaskDTO(){
         return Response.newSuccess(taskService.getCurrentTaskDTO());
     }
+
+//    分页GET任务
+    @GetMapping("/taskdto/paged")
+    public Response<Page<TaskDTO>> getPagedTasks(@RequestParam int page, @RequestParam int size){
+        return Response.newSuccess(taskService.getCurrentPagedTaskDTO(page, size));
+    }
+
+
 
     //    模糊查询，GET被query的任务，指定name,code,create_date范围
     @GetMapping("/taskdto/query")

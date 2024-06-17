@@ -6,6 +6,10 @@ import com.ccda.task.dao.TaskRepository;
 import com.ccda.task.dto.TaskDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -13,6 +17,9 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.ccda.task.converter.TaskConverter.convertTask;
 
 @Service
 public class TaskServiceImpl implements TaskService{
@@ -28,20 +35,33 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public TaskDTO getTaskDTOById(long id){
         Task task = taskRepository.findById(id).orElseThrow(RuntimeException::new);
-        return TaskConverter.convertTask(task);
+        return convertTask(task);
     }
 
     @Override
     public List<TaskDTO> getAllTaskDTO(){
         List<Task> taskList = taskRepository.findAll();
-        return TaskConverter.convertTask(taskList);
+        return convertTask(taskList);
     }
 
     @Override
     public List<TaskDTO> getCurrentTaskDTO(){
         List<Task> taskList = taskRepository.findByDeleted(false);
-        return TaskConverter.convertTask(taskList);
+        return convertTask(taskList);
     }
+
+    @Override
+//    分页
+    public Page<TaskDTO> getCurrentPagedTaskDTO(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+//        Page<Task> taskPage = taskRepository.findPageByDeletedFalse(pageable);
+        Page<Task> taskPage = taskRepository.findPageByDeleted(pageable, false);
+        List<TaskDTO> taskDTOs = taskPage.getContent().stream()
+                .map(task -> convertTask(task))  // convert each Task to TaskDTO
+                .collect(Collectors.toList());
+        return new PageImpl<>(taskDTOs, pageable, taskPage.getTotalElements());
+    }
+
 
     @Override
     public List<TaskDTO> queryTaskDTO(String name, String code, Date startDate, Date endDate){
@@ -55,8 +75,32 @@ public class TaskServiceImpl implements TaskService{
             taskList = taskRepository.findByQueryWithoutDate(name, code);
             System.out.println("without date");
         }
-        return TaskConverter.convertTask(taskList);
+        return convertTask(taskList);
     }
+
+
+//    @Override
+//    public List<TaskDTO> queryPagedTaskDTO(String name, String code, Date startDate, Date endDate){
+//        // 创建一个默认的Pageable对象
+//        int defaultPage = 0;
+//        int defaultSize = 10;
+//        Pageable pageable = PageRequest.of(defaultPage, defaultSize);
+//
+//        Page<Task> taskPage;
+//        if (startDate != null && endDate != null){
+//            taskPage = taskRepository.findByQuery(name, code, startDate, endDate, pageable);
+//            System.out.println(startDate);
+//            System.out.println(endDate);
+//        }
+//        else{
+//            taskPage = taskRepository.findByQueryWithoutDate(name, code, pageable);
+//            System.out.println("without date");
+//        }
+//        List<TaskDTO> taskDTOs = taskPage.getContent().stream()
+//                .map(this::convertTask)  // convert each Task to TaskDTO
+//                .collect(Collectors.toList());
+//        return new PageImpl<>(taskDTOs, pageable, taskPage.getTotalElements());
+//    }
 
 
     @Override
@@ -66,7 +110,7 @@ public class TaskServiceImpl implements TaskService{
 //        if (!CollectionUtils.isEmpty(taskList)){
 //            throw new IllegalStateException("name: " + taskDTO.getName() + " has been taken");
 //        }
-        Task task = taskRepository.save(TaskConverter.convertTask(taskDTO));
+        Task task = taskRepository.save(convertTask(taskDTO));
         return task.getId();
     }
 
@@ -93,7 +137,7 @@ public class TaskServiceImpl implements TaskService{
             }
         }
         Task task = taskRepository.save(taskInDB);
-        return TaskConverter.convertTask(task);
+        return convertTask(task);
     }
 
     @Override
@@ -106,7 +150,9 @@ public class TaskServiceImpl implements TaskService{
         }
         task.setDeleted(true);
         task.setDelete_time(new Date());
-        return TaskConverter.convertTask(task);
+        return convertTask(task);
     }
+
+
 
 }

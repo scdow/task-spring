@@ -2,6 +2,7 @@ package com.ccda.task.service;
 
 import com.ccda.task.dao.Task;
 import com.ccda.task.dto.TaskDTO;
+import org.springframework.data.domain.Page;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,8 @@ public interface TaskService {
 
     List<TaskDTO> getCurrentTaskDTO();
 
+    Page<TaskDTO> getCurrentPagedTaskDTO(int page, int size);
+
     List<TaskDTO> queryTaskDTO(String name, String code, Date startDate, Date endDate);
 
     Long addNewTask(TaskDTO taskDTO);
@@ -24,5 +27,7 @@ public interface TaskService {
     TaskDTO updateTaskById(long id, String name);
 
     TaskDTO hideTaskById(long id);
+
+
 
 }
