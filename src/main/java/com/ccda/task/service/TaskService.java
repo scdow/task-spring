@@ -20,6 +20,8 @@ public interface TaskService {
 
     List<TaskDTO> queryTaskDTO(String name, String code, Date startDate, Date endDate);
 
+    Page<TaskDTO> queryPagedTaskDTO(int page, int size, String name, String code, Date startDate, Date endDate);
+
     Long addNewTask(TaskDTO taskDTO);
 
     void deleteTaskById(long id);

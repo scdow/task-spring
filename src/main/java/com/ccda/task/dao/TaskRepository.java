@@ -28,13 +28,11 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
     @Query("SELECT t from Task t WHERE t.deleted=false AND t.name LIKE %:name% AND t.code LIKE %:code%")
     List<Task> findByQueryWithoutDate(@Param("name") String name, @Param("code") String code);
 
-//    List<Task> findByTaskDateBetween(Date startDate, Date endDate);
 
-//    @Query("SELECT t FROM Task t WHERE t.name = :name AND t.code = :code AND t.date BETWEEN :startDate AND :endDate")
-//    Page<Task> findByPagedQuery(@Param("name") String name, @Param("code") String code, @Param("startDate") Date startDate, @Param("endDate") Date endDate, Pageable pageable);
-//
-//    @Query("SELECT t FROM Task t WHERE t.name = :name AND t.code = :code")
-//    Page<Task> findByPagedQueryWithoutDate(@Param("name") String name, @Param("code") String code, Pageable pageable);
+    @Query("SELECT t from Task t WHERE t.deleted=false AND t.name LIKE %:name% AND t.code LIKE %:code% AND t.create_time BETWEEN :startDate AND :endDate")
+    Page<Task> findByPagedQuery(@Param("name") String name, @Param("code") String code, @Param("startDate") Date startDate, @Param("endDate") Date endDate, Pageable pageable);
 
+    @Query("SELECT t from Task t WHERE t.deleted=false AND t.name LIKE %:name% AND t.code LIKE %:code%")
+    Page<Task> findByPagedQueryWithoutDate(@Param("name") String name, @Param("code") String code, Pageable pageable);
 
 }

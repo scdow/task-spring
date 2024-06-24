@@ -79,28 +79,30 @@ public class TaskServiceImpl implements TaskService{
     }
 
 
-//    @Override
-//    public List<TaskDTO> queryPagedTaskDTO(String name, String code, Date startDate, Date endDate){
-//        // 创建一个默认的Pageable对象
-//        int defaultPage = 0;
-//        int defaultSize = 10;
-//        Pageable pageable = PageRequest.of(defaultPage, defaultSize);
-//
-//        Page<Task> taskPage;
-//        if (startDate != null && endDate != null){
-//            taskPage = taskRepository.findByQuery(name, code, startDate, endDate, pageable);
-//            System.out.println(startDate);
-//            System.out.println(endDate);
-//        }
-//        else{
-//            taskPage = taskRepository.findByQueryWithoutDate(name, code, pageable);
-//            System.out.println("without date");
-//        }
-//        List<TaskDTO> taskDTOs = taskPage.getContent().stream()
-//                .map(this::convertTask)  // convert each Task to TaskDTO
-//                .collect(Collectors.toList());
-//        return new PageImpl<>(taskDTOs, pageable, taskPage.getTotalElements());
-//    }
+    @Override
+    public Page<TaskDTO> queryPagedTaskDTO(int page, int size, String name, String code, Date startDate, Date endDate){
+        // 创建一个默认的Pageable对象
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Task> taskPage = null;
+
+        if (startDate != null && endDate != null){
+            taskPage = taskRepository.findByPagedQuery(name, code, startDate, endDate, pageable);
+            System.out.println(startDate);
+            System.out.println(endDate);
+        }
+        else{
+            taskPage = taskRepository.findByPagedQueryWithoutDate(name, code, pageable);
+            System.out.println("without date");
+        }
+
+        System.out.println(taskPage);
+        List<TaskDTO> taskDTOs = taskPage.getContent().stream()
+                .map(task -> convertTask(task))  // convert each Task to TaskDTO
+                .collect(Collectors.toList());
+        System.out.println(taskDTOs);
+        return new PageImpl<>(taskDTOs, pageable, taskPage.getTotalElements());
+    }
 
 
     @Override

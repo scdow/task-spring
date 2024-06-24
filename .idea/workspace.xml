@@ -10,10 +10,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/dao/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/dao/TaskRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ccda/task/service/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/controller/TaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/controller/TaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/dao/TaskRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/dao/TaskRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ccda/task/service/TaskServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,8 @@
       <workItem from="1717914483462" duration="3559000" />
       <workItem from="1717921491494" duration="2325000" />
       <workItem from="1717924533491" duration="27428000" />
-      <workItem from="1718380941417" duration="16550000" />
+      <workItem from="1718380941417" duration="17070000" />
+      <workItem from="1719245567760" duration="10988000" />
     </task>
     <task id="LOCAL-00001" summary="任务管理">
       <created>1717925431925</created>
@@ -147,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718391450086</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="增加pagination接口">
+      <created>1718659218631</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718659218631</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

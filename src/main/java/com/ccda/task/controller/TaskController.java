@@ -37,14 +37,14 @@ public class TaskController {
         return Response.newSuccess(taskService.getAllTaskDTO());
     }
 
-    //    GET所有deleted=0的任务
+    //    GET所有deleted==0的任务
     @GetMapping("/taskdto/current")
     public Response<List<TaskDTO>> getCurrentTaskDTO(){
         return Response.newSuccess(taskService.getCurrentTaskDTO());
     }
 
-//    分页GET任务
-    @GetMapping("/taskdto/paged")
+//    分页GET任务 并且deleted==0
+    @GetMapping("/taskdto/current/paged")
     public Response<Page<TaskDTO>> getPagedTasks(@RequestParam int page, @RequestParam int size){
         return Response.newSuccess(taskService.getCurrentPagedTaskDTO(page, size));
     }
@@ -53,7 +53,7 @@ public class TaskController {
 
     //    模糊查询，GET被query的任务，指定name,code,create_date范围
     @GetMapping("/taskdto/query")
-    public Response<List<TaskDTO>> queryTaskDTO(@RequestParam(required = false)  String name, @RequestParam(required = false)  String code,
+    public Response<List<TaskDTO>> queryTaskDTO(  @RequestParam(required = false)  String name, @RequestParam(required = false)  String code,
                                                    @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date startDate,
                                                    @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date endDate){
         return Response.newSuccess(taskService.queryTaskDTO(name, code, startDate, endDate));
@@ -62,6 +62,15 @@ public class TaskController {
 //    @DateTimeFormat
 //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 //@DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss")
+
+    //    分页 + 模糊查询，GET被query的任务，指定name,code,create_date范围
+    @GetMapping("/taskdto/query/paged")
+    public Response<Page<TaskDTO>> queryPagedTaskDTO(@RequestParam int page, @RequestParam int size,
+                                                     @RequestParam(required = false)  String name, @RequestParam(required = false)  String code,
+                                                @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date startDate,
+                                                @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date endDate){
+        return Response.newSuccess(taskService.queryPagedTaskDTO(page, size, name, code, startDate, endDate));
+    }
 
 
 //    新增接口，新增任务
